@@ -1295,33 +1295,33 @@ footer {
     </div>
 
     <div class="contact-form-wrap">
-      <div id="form-body">
+      <form id="form-body" action="https://formspree.io/f/xrewbjbq" method="POST">
         <div class="form-title">Request a Free Quote</div>
         <p class="form-sub">Fill out the form and we'll reach out within 24 hours.</p>
 
         <div class="form-row">
           <div class="fg">
             <label>First Name *</label>
-            <input type="text" placeholder="John" id="f-first"/>
+            <input type="text" placeholder="John" id="f-first" name="first_name"/>
           </div>
           <div class="fg">
             <label>Last Name *</label>
-            <input type="text" placeholder="Smith" id="f-last"/>
+            <input type="text" placeholder="Smith" id="f-last" name="last_name"/>
           </div>
         </div>
         <div class="form-row">
           <div class="fg">
             <label>Phone *</label>
-            <input type="tel" placeholder="(801) 555-0000" id="f-phone"/>
+            <input type="tel" placeholder="(801) 555-0000" id="f-phone" name="phone"/>
           </div>
           <div class="fg">
             <label>Email</label>
-            <input type="email" placeholder="john@email.com" id="f-email"/>
+            <input type="email" placeholder="john@email.com" id="f-email" name="email"/>
           </div>
         </div>
         <div class="fg">
           <label>Service Needed *</label>
-          <select id="f-service">
+          <select id="f-service" name="service">
             <option value="">Select a service...</option>
             <option>General Contracting</option>
             <option>Repair Work</option>
@@ -1342,11 +1342,11 @@ footer {
           <input type="checkbox" id="f-agree"/>
           <label for="f-agree">I agree to be contacted by Eagle Creek Construction regarding my inquiry. We respect your privacy and will never share your information.</label>
         </div>
-        <button class="submit-btn" onclick="submitForm()">Submit Quote Request →</button>
-      </div>
+        <button type="submit" class="submit-btn">Submit Quote Request →</button>
+      </form>
 
       <div class="form-success" id="form-success">
-        <div class="success-icon">✓</div>
+        <div class="success-icon">✓</div> 
         <h3>Request Received</h3>
         <p>Thanks for reaching out to Eagle Creek Construction.<br/>We'll review your project and get back to you within <strong>24 hours</strong>.</p>
       </div>
@@ -1387,14 +1387,7 @@ footer {
     document.getElementById('hamburger').classList.toggle('open');
   }
 
-  function submitForm() {
-    const required = ['f-first', 'f-last', 'f-phone', 'f-service', 'f-desc'];
-    const empty = required.some(id => !document.getElementById(id).value.trim());
-    if (empty) { alert('Please fill in all required fields (*).'); return; }
-    if (!document.getElementById('f-agree').checked) { alert('Please check the agreement box.'); return; }
-    document.getElementById('form-body').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  }
+  
 
   // Prevent default on all # links
   document.querySelectorAll('a[href="#"]').forEach(a => {
