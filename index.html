@@ -1387,50 +1387,13 @@ footer {
     document.getElementById('hamburger').classList.toggle('open');
   }
 
- function submitForm() {
-  const required = ['f-first', 'f-last', 'f-phone', 'f-service', 'f-desc'];
-  const empty = required.some(id => !document.getElementById(id).value.trim());
-  if (empty) { alert('Please fill in all required fields (*).'); return; }
-  if (!document.getElementById('f-agree').checked) { alert('Please check the agreement box.'); return; }
-
-  const btn = document.querySelector('.submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-
-  const data = {
-    firstName: document.getElementById('f-first').value,
-    lastName: document.getElementById('f-last').value,
-    phone: document.getElementById('f-phone').value,
-    email: document.getElementById('f-email').value,
-    service: document.getElementById('f-service').value,
-    location: document.getElementById('f-loc').value,
-    description: document.getElementById('f-desc').value,
-    _subject: 'New Quote Request — Eagle Creek Construction'
-  };
-
-  fetch('https://formspree.io/f/xrewbjbq', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok) {
-        document.getElementById('form-body').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        response.json().then(data => {
-          alert('Oops! There was a problem submitting your form: ' + (data.errors ? data.errors.map(e => e.message).join(', ') : 'Please try again.'));
-          btn.disabled = false;
-          btn.textContent = 'Submit Quote Request →';
-        });
-      }
-    })
-    .catch(() => {
-      alert('Oops! There was a problem submitting your form. Please check your connection and try again.');
-      btn.disabled = false;
-      btn.textContent = 'Submit Quote Request →';
-    });
-}
+  function submitForm() {
+    const required = ['f-first', 'f-last', 'f-phone', 'f-service', 'f-desc'];
+    const empty = required.some(id => !document.getElementById(id).value.trim());
+    if (empty) { alert('Please fill in all required fields (*).'); return; }
+    if (!document.getElementById('f-agree').checked) { alert('Please check the agreement box.'); return; }
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
   }
 
   // Prevent default on all # links
